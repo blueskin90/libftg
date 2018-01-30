@@ -6,7 +6,7 @@
 #    By: toliver <marvin@42.fr>                     +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/11/12 01:24:53 by toliver           #+#    #+#              #
-#    Updated: 2018/01/30 00:23:48 by toliver          ###   ########.fr        #
+#    Updated: 2018/01/30 03:14:36 by toliver          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,9 +14,11 @@ NAME = libftg.a
 
 FLAGS = -Wall -Wextra -Werror -Ofast
 
-FILES = vector.c
+FILES = vector.c \
+		quaternion.c \
+		angle.c \
 
-SRC = $(FILES))
+SRC = $(FILES)
 
 SRC_PATH = srcs/
 
@@ -33,10 +35,10 @@ HEADERS = libftg.h
 
 all: $(NAME)
 
-$(NAME): $(OBJS)
+$(NAME): $(OBJS) $(HEADER)
 	ar rcs $(NAME) $(OBJS)
 
-%.o: srcs/%.c
+%.o: srcs/%.c $(HEADER)
 	gcc -o $@ -c $< $(FLAGS) $(INCLUDES)
 
 clean:
@@ -46,3 +48,6 @@ fclean: clean
 	rm -rf $(NAME)
 
 re: fclean all
+
+test: $(NAME)
+	gcc -o test.out main.c libftg.a $(INCLUDES) $(FLAGS)
