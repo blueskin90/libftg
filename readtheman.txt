@@ -1,0 +1,1 @@
+man /Users/toliver/projects/libftg/man1/libftg.1
