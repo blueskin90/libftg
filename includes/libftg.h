@@ -6,7 +6,7 @@
 /*   By: toliver <marvin@42.fr>                     +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2018/01/30 00:24:18 by toliver           #+#    #+#             */
-/*   Updated: 2018/01/30 07:02:55 by toliver          ###   ########.fr       */
+/*   Updated: 2018/02/26 02:37:44 by toliver          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,8 @@ typedef struct	s_vec
 	float		z;
 }				t_vec;
 
+//typedef float t_vec __attribute__ ((ext_vector_type(3)));
+
 typedef struct	s_quat
 {
 	float		x;
@@ -30,6 +32,16 @@ typedef struct	s_quat
 	float		z;
 	float		w;
 }				t_quat;
+
+typedef struct	s_quatv
+{
+	t_vec		v;
+	float		w;
+}				t_quatv;
+
+
+//#define ftg_vecadd(x, y) x+y
+//#define ftg_vecsub(x, y) x-y
 
 t_vec			ftg_vecdef(float x, float y, float z);
 t_vec			ftg_vecadd(t_vec a, t_vec b);
@@ -53,6 +65,7 @@ t_quat			ftg_quatnormalize(t_quat a);
 t_quat			ftg_quatconj(t_quat a);
 t_quat			ftg_quatcross(t_quat a, t_quat b);
 t_quat			ftg_quatrotadd(t_quat a, t_quat b);
+
 float			ftg_degtorad(float angle);
 float			ftg_radtodeg(float angle);
 #endif
